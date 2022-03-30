@@ -1,15 +1,14 @@
 package axiomq.com.starwars.entities;
 
+import axiomq.com.starwars.enums.UserType;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
 @Data
+@NoArgsConstructor
 public class Users {
-
-    private enum UserType{
-        USERS, ADMINS
-    }
 
     private Long userId;
     private UserType userType;
@@ -34,5 +33,5 @@ public class Users {
         return Objects.hash(userId, userType, email, password, username);
     }
 
-    
+
 }
