@@ -6,37 +6,37 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class Icon {
+public class Vote {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String iconName;
-    private String path;
+    private Integer numericalValue;
+    private String comment;
 
-    @OneToMany(mappedBy = "icon", fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
-    private List<Vote> votes = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "icon")
+    private Icon icon;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Icon icon = (Icon) o;
-        return Objects.equals(id, icon.id) &&
-                Objects.equals(iconName, icon.iconName) &&
-                Objects.equals(path, icon.path);
+        Vote vote = (Vote) o;
+        return Objects.equals(id, vote.id) &&
+                Objects.equals(numericalValue, vote.numericalValue) &&
+                Objects.equals(comment, vote.comment) &&
+                Objects.equals(icon, vote.icon);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, iconName, path);
+        return Objects.hash(id, numericalValue, comment, icon);
     }
 }
