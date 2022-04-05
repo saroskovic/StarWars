@@ -10,6 +10,8 @@ public interface CharacterService {
 
     Character getCharacterById(Long characterId);
 
+    Character updateCharacter(Character character, Long characterId);
+
     void deleteCharacter(Long characterId);
 
     void populateDatabase();
