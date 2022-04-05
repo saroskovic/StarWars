@@ -10,7 +10,7 @@ public interface UserService {
 
     List<User> fetchAllUsers();
 
-    User getUserById(Long userIs);
+    User getUserById(Long userId);
 
     User updateUser(Long userId, User user);
 
