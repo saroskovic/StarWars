@@ -10,9 +10,7 @@ public interface VoteService {
 
     List<Vote> fetchAllVotes();
 
-    List<Vote> fetchAllVotesByUserId(Long userId);
-
-    List<Vote> fetchAllVotesByCharacterId(Long characterId);
+    Vote getVoteById(Long voteId);
 
     Vote updateVote(Long voteId, Vote vote);
 
