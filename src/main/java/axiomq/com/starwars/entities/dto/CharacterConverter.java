@@ -21,7 +21,8 @@ public class CharacterConverter {
                 .name(characterInit.getName())
                 .planet(characterInit.getHomeworld())
                 .gender(characterInit.getGender())
-                .films(filmConverter(characterInit.getFilms()))
+                .films(null)
+                //.films(filmConverter(characterInit.getFilms()))
                 .votersCount(0)
                 .build();
     }

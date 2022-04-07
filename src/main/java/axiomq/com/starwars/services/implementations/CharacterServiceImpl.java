@@ -7,6 +7,7 @@ import axiomq.com.starwars.entities.dto.CharacterExt;
 import axiomq.com.starwars.entities.dto.CharacterInit;
 import axiomq.com.starwars.repositories.CharacterRepository;
 import axiomq.com.starwars.services.CharacterService;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
@@ -35,6 +36,7 @@ public class CharacterServiceImpl implements CharacterService {
         Set<Character> charactersDb = new HashSet<>();
         List<CharacterInit> characters = new ArrayList<>(response.getResults());
         characters.forEach(characterInit -> charactersDb.add(characterConverter.toCharacter(characterInit)));
+        characterRepository.saveAll(charactersDb);
     }
 
     @Override
