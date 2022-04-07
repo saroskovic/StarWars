@@ -3,6 +3,7 @@ package axiomq.com.starwars.services.implementations;
 import axiomq.com.starwars.entities.Film;
 import axiomq.com.starwars.repositories.FilmRepository;
 import axiomq.com.starwars.services.FilmService;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

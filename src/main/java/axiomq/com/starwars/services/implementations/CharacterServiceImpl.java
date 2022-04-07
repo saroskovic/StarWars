@@ -7,6 +7,7 @@ import axiomq.com.starwars.entities.dto.CharacterExt;
 import axiomq.com.starwars.entities.dto.CharacterInit;
 import axiomq.com.starwars.repositories.CharacterRepository;
 import axiomq.com.starwars.services.CharacterService;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
@@ -26,20 +27,28 @@ public class CharacterServiceImpl implements CharacterService {
 
     private final CharacterRepository characterRepository;
 
-
-
     @Override
     public void populateDatabase() {
         String url = "https://swapi.dev/api/people";
-        CharacterExt response = restTemplate.getForObject(url, CharacterExt.class);
         Set<Character> charactersDb = new HashSet<>();
-        List<CharacterInit> characters = new ArrayList<>(response.getResults());
-        characters.forEach(characterInit -> charactersDb.add(characterConverter.toCharacter(characterInit)));
+        while(url!=null) {
+            CharacterExt response = restTemplate.getForObject(url, CharacterExt.class);
+            List<CharacterInit> characters = new ArrayList<>(response.getResults());
+            characters.forEach(characterInit -> charactersDb.add(characterConverter.toCharacter(characterInit)));
+            characterRepository.saveAll(charactersDb);
+            url = response.getNext();
+        }
+
     }
 
     @Override
     public List<Character> fetchAllCharacters() {
         return characterRepository.findAll();
+    }
+
+    @Override
+    public Character saveCharacter(Character character) {
+        return characterRepository.save(character);
     }
 
     @Override
