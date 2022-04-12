@@ -8,6 +8,8 @@ public interface CharacterService {
 
     List<Character> fetchAllCharacters();
 
+    Character saveCharacter(Character character);
+
     Character getCharacterById(Long characterId);
 
     Character updateCharacter(Character character, Long characterId);
