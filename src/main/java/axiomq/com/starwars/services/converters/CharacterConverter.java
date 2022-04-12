@@ -1,9 +1,7 @@
-package axiomq.com.starwars.entities.dto;
+package axiomq.com.starwars.services.converters;
 
 import axiomq.com.starwars.entities.Character;
-import axiomq.com.starwars.entities.Film;
-import axiomq.com.starwars.services.FilmService;
-import lombok.RequiredArgsConstructor;
+import axiomq.com.starwars.entities.dto.CharacterInit;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
