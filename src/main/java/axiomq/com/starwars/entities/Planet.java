@@ -2,10 +2,8 @@ package axiomq.com.starwars.entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -20,4 +18,7 @@ public class Planet {
     private Long id;
 
     private String name;
+
+    @OneToMany
+    private Set<Character> characters;
 }

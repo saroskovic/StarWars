@@ -30,7 +30,9 @@ public class Character {
             inverseJoinColumns = {@JoinColumn(name = "character_id")})
     private Set<Film> films = new HashSet<>();
 
-    private String planet;
+    @ManyToOne
+    @JoinColumn(name = "planet_id")
+    private Planet planet;
     private Integer votersCount;
 
     @Override

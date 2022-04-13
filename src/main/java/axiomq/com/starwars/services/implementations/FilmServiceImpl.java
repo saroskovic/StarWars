@@ -1,20 +1,28 @@
 package axiomq.com.starwars.services.implementations;
 
 import axiomq.com.starwars.entities.Film;
+import axiomq.com.starwars.entities.dto.FilmExt;
+import axiomq.com.starwars.entities.dto.FilmInit;
 import axiomq.com.starwars.repositories.FilmRepository;
 import axiomq.com.starwars.services.FilmService;
-import lombok.NoArgsConstructor;
+import axiomq.com.starwars.services.converters.FilmConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
 public class FilmServiceImpl implements FilmService {
 
+    private final RestTemplate restTemplate;
+
+    private final FilmConverter filmConverter;
+
     private final FilmRepository filmRepository;
+
+    private String url = "https://swapi.dev/api/films";
 
     @Override
     public Film saveFilm(Film film) {
@@ -44,5 +52,19 @@ public class FilmServiceImpl implements FilmService {
     public void deleteFilm(Long filmId) {
         Film film = getById(filmId);
         filmRepository.delete(film);
+    }
+
+    @Override
+    public void populateDatabase() {
+
+        Set<Film> filmsDb = new HashSet<>();
+
+        while(url!=null) {
+            FilmExt response = restTemplate.getForObject(url, FilmExt.class);
+            List<FilmInit> films = new ArrayList<>(response.getResults());
+            films.forEach(filmInit -> filmsDb.add(filmConverter.toFilm(filmInit)));
+            filmRepository.saveAll(filmsDb);
+            url = response.getNext();
+        }
     }
 }
