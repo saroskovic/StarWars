@@ -3,7 +3,6 @@ package axiomq.com.starwars.controllers;
 import axiomq.com.starwars.entities.Character;
 import axiomq.com.starwars.services.CharacterService;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,11 +13,6 @@ import java.util.List;
 public class CharacterController {
 
     private CharacterService characterService;
-
-    @GetMapping("/populatedb")
-    public void populate() {
-        characterService.populateDatabase();
-    }
 
     @PostMapping
     public Character saveCharacter(@RequestBody Character character) {

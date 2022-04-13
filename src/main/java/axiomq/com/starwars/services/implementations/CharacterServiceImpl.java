@@ -1,20 +1,15 @@
 package axiomq.com.starwars.services.implementations;
 
 import axiomq.com.starwars.entities.Character;
-import axiomq.com.starwars.entities.User;
-import axiomq.com.starwars.entities.dto.CharacterConverter;
+import axiomq.com.starwars.services.converters.CharacterConverter;
 import axiomq.com.starwars.entities.dto.CharacterExt;
 import axiomq.com.starwars.entities.dto.CharacterInit;
 import axiomq.com.starwars.repositories.CharacterRepository;
 import axiomq.com.starwars.services.CharacterService;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import javax.net.ssl.HttpsURLConnection;
 import java.util.*;
 
 @Service
@@ -27,9 +22,11 @@ public class CharacterServiceImpl implements CharacterService {
 
     private final CharacterRepository characterRepository;
 
+    String url = "https://swapi.dev/api/people";
+
     @Override
     public void populateDatabase() {
-        String url = "https://swapi.dev/api/people";
+
         Set<Character> charactersDb = new HashSet<>();
         while(url!=null) {
             CharacterExt response = restTemplate.getForObject(url, CharacterExt.class);
