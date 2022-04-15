@@ -23,8 +23,7 @@ public class CharacterServiceImpl implements CharacterService {
 
     private final CharacterRepository characterRepository;
 
-
-    private String url = "https://swapi.dev/api/people";
+    String url = "https://swapi.dev/api/people";
 
     @Override
     public void populateDatabase() {
