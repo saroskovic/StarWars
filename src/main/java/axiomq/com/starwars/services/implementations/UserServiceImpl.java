@@ -1,6 +1,7 @@
 package axiomq.com.starwars.services.implementations;
 
 import axiomq.com.starwars.entities.User;
+import axiomq.com.starwars.enums.UserType;
 import axiomq.com.starwars.repositories.UserRepository;
 import axiomq.com.starwars.services.UserService;
 import lombok.AllArgsConstructor;
@@ -18,6 +19,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
+        user.setUserType(UserType.USER);
         return userRepository.save(user);
     }
 
