@@ -1,0 +1,2 @@
+#INSERT INTO user (email, password, user_type, username) VALUES ('zoran@mail.com', 'pass123', 'ADMIN' , 'zoran');
+#INSERT INTO user (email, password, user_type, username) VALUES ('pera@mail.com', 'pass123', 'USER' , 'pera');

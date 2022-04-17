@@ -14,11 +14,6 @@ public class FilmController {
 
     private FilmService filmService;
 
-    @GetMapping("/populatedb")
-    public void populate(){
-        filmService.populateDatabase();
-    }
-
     @GetMapping
     public List<Film> fetchAllFilms(){
         return filmService.getAllFilms();

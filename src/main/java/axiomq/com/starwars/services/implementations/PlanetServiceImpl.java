@@ -22,7 +22,7 @@ public class PlanetServiceImpl implements PlanetService {
 
     private final PlanetConverter planetConverter;
 
-    String url = "https://swapi.dev/api/planets";
+    private String url = "https://swapi.dev/api/planets";
 
     @Override
     public Planet savePlanet(Planet planet) {

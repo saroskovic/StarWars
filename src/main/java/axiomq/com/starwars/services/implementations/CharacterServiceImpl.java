@@ -1,6 +1,7 @@
 package axiomq.com.starwars.services.implementations;
 
 import axiomq.com.starwars.entities.Character;
+import axiomq.com.starwars.repositories.FilmRepository;
 import axiomq.com.starwars.services.converters.CharacterConverter;
 import axiomq.com.starwars.entities.dto.CharacterExt;
 import axiomq.com.starwars.entities.dto.CharacterInit;
@@ -35,6 +36,7 @@ public class CharacterServiceImpl implements CharacterService {
             characterRepository.saveAll(charactersDb);
             url = response.getNext();
         }
+
 
     }
 

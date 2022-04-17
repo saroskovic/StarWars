@@ -3,16 +3,21 @@ package axiomq.com.starwars.controllers;
 import axiomq.com.starwars.entities.User;
 import axiomq.com.starwars.services.UserService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
 
-    private UserService userService;
+    @Autowired
+    private  UserService userService;
+
 
     @GetMapping
     public List<User> fetchAllUsers(){
