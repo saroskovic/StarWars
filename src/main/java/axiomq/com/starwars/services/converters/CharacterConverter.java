@@ -14,7 +14,7 @@ public class CharacterConverter {
 
     private final PlanetService planetService;
 
-    public Character toCharacter(CharacterInit characterInit){
+    public Character toCharacter(CharacterInit characterInit) {
         return Character.builder()
                 .name(characterInit.getName())
                 .planet(homeworldToPlanet(characterInit.getHomeworld()))
@@ -24,16 +24,11 @@ public class CharacterConverter {
                 .build();
     }
 
-    public Planet homeworldToPlanet(String homeworld){
+    public Planet homeworldToPlanet(String homeworld) {
         String homeworldId = homeworld.replaceAll("[^0-9]", "");
         Long planetId = Long.parseLong(homeworldId);
         return planetService.getById(planetId);
     }
-
-
-
-
-
 
 
 }

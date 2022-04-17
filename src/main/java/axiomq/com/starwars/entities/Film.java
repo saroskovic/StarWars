@@ -24,7 +24,7 @@ public class Film {
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    @JoinTable(name="characters_in_films", joinColumns =
+    @JoinTable(name = "characters_in_films", joinColumns =
             {@JoinColumn(name = "character_id", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "film_id")})
     private Set<Character> characters = new HashSet<>();

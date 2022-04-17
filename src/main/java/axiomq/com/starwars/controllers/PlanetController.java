@@ -15,27 +15,27 @@ public class PlanetController {
     private PlanetService planetService;
 
     @GetMapping
-    public List<Planet> fetchAllPlanets(){
+    public List<Planet> fetchAllPlanets() {
         return planetService.getAllPlanets();
     }
 
     @GetMapping("/{id}")
-    public Planet getPlanet(@PathVariable Long id){
+    public Planet getPlanet(@PathVariable Long id) {
         return planetService.getById(id);
     }
 
     @PutMapping("/{id}")
-    public Planet updatePlanet(@RequestBody Planet planet, @PathVariable Long id){
+    public Planet updatePlanet(@RequestBody Planet planet, @PathVariable Long id) {
         return planetService.updatePlanet(planet, id);
     }
 
     @PostMapping
-    public Planet savePlanet(@RequestBody Planet planet){
+    public Planet savePlanet(@RequestBody Planet planet) {
         return planetService.savePlanet(planet);
     }
 
     @DeleteMapping("/{id}")
-    public void deletePlanet(@PathVariable Long id){
+    public void deletePlanet(@PathVariable Long id) {
         planetService.deletePlanet(id);
     }
 

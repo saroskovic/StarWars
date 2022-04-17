@@ -1,6 +1,7 @@
 package axiomq.com.starwars.services.implementations;
 
 import axiomq.com.starwars.entities.Character;
+import axiomq.com.starwars.repositories.FilmRepository;
 import axiomq.com.starwars.services.converters.CharacterConverter;
 import axiomq.com.starwars.entities.dto.CharacterExt;
 import axiomq.com.starwars.entities.dto.CharacterInit;
@@ -28,14 +29,13 @@ public class CharacterServiceImpl implements CharacterService {
     public void populateDatabase() {
 
         Set<Character> charactersDb = new HashSet<>();
-        while(url!=null) {
+        while (url != null) {
             CharacterExt response = restTemplate.getForObject(url, CharacterExt.class);
             List<CharacterInit> characters = new ArrayList<>(response.getResults());
             characters.forEach(characterInit -> charactersDb.add(characterConverter.toCharacter(characterInit)));
             characterRepository.saveAll(charactersDb);
             url = response.getNext();
         }
-
     }
 
     @Override
@@ -57,11 +57,11 @@ public class CharacterServiceImpl implements CharacterService {
     @Override
     public Character updateCharacter(Character newCharacter, Long characterId) {
         Character character = getCharacterById(characterId);
-        if(newCharacter.getName() != null)
+        if (newCharacter.getName() != null)
             character.setName(newCharacter.getName());
-        if(newCharacter.getGender() != null)
+        if (newCharacter.getGender() != null)
             character.setGender(newCharacter.getGender());
-        if(newCharacter.getPlanet() != null)
+        if (newCharacter.getPlanet() != null)
             character.setPlanet(newCharacter.getPlanet());
         return characterRepository.save(character);
     }

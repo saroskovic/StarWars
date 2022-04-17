@@ -17,6 +17,4 @@ public interface CharacterService {
     void deleteCharacter(Long characterId);
 
     void populateDatabase();
-
-
 }

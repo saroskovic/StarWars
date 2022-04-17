@@ -15,5 +15,4 @@ public interface VoteService {
     Vote updateVote(Long voteId, Vote vote);
 
     void deleteVote(Long voteId);
-
 }

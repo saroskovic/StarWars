@@ -20,22 +20,22 @@ public class CharacterController {
     }
 
     @GetMapping
-    public List<Character> fetchAllCharacters(){
+    public List<Character> fetchAllCharacters() {
         return characterService.fetchAllCharacters();
     }
 
     @GetMapping("/{id}")
-    public Character getCharacter(@PathVariable Long id){
+    public Character getCharacter(@PathVariable Long id) {
         return characterService.getCharacterById(id);
     }
 
     @PutMapping("/{id}")
-    public Character updateCharacter(@RequestBody Character character, @PathVariable Long id){
+    public Character updateCharacter(@RequestBody Character character, @PathVariable Long id) {
         return characterService.updateCharacter(character, id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCharacter(@PathVariable Long id){
+    public void deleteCharacter(@PathVariable Long id) {
         characterService.deleteCharacter(id);
     }
 }

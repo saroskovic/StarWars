@@ -14,33 +14,28 @@ public class FilmController {
 
     private FilmService filmService;
 
-    @GetMapping("/populatedb")
-    public void populate(){
-        filmService.populateDatabase();
-    }
-
     @GetMapping
-    public List<Film> fetchAllFilms(){
+    public List<Film> fetchAllFilms() {
         return filmService.getAllFilms();
     }
 
     @GetMapping("/{id}")
-    public Film getFilm(@PathVariable Long id){
+    public Film getFilm(@PathVariable Long id) {
         return filmService.getById(id);
     }
 
     @PostMapping
-    public Film saveFilm(@RequestBody Film film){
+    public Film saveFilm(@RequestBody Film film) {
         return filmService.saveFilm(film);
     }
 
     @PutMapping("/{id}")
-    public Film updateFilm(@RequestBody Film film, @PathVariable Long id){
+    public Film updateFilm(@RequestBody Film film, @PathVariable Long id) {
         return filmService.updateFilm(film, id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteFilm(@PathVariable Long id){
+    public void deleteFilm(@PathVariable Long id) {
         filmService.deleteFilm(id);
     }
 

@@ -6,7 +6,6 @@ import axiomq.com.starwars.services.VoteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -35,9 +34,9 @@ public class VoteServiceImpl implements VoteService {
     @Override
     public Vote updateVote(Long voteId, Vote newVote) {
         Vote vote = getVoteById(voteId);
-        if(newVote.getComment() != null)
+        if (newVote.getComment() != null)
             vote.setComment(newVote.getComment());
-        if(newVote.getNumericalValue() != null)
+        if (newVote.getNumericalValue() != null)
             vote.setNumericalValue(newVote.getNumericalValue());
         return null;
     }
@@ -46,6 +45,5 @@ public class VoteServiceImpl implements VoteService {
     public void deleteVote(Long voteId) {
         Vote vote = getVoteById(voteId);
         voteRepository.delete(vote);
-
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PlanetConverter {
 
-    public Planet toPlanet(PlanetInit planetInit){
+    public Planet toPlanet(PlanetInit planetInit) {
         return Planet.builder()
                 .name(planetInit.getName())
                 .build();

@@ -22,7 +22,7 @@ public class FilmServiceImpl implements FilmService {
 
     private final FilmRepository filmRepository;
 
-    String url = "https://swapi.dev/api/films";
+    private String url = "https://swapi.dev/api/films";
 
     @Override
     public Film saveFilm(Film film) {

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class FilmConverter {
 
-    public Film toFilm(FilmInit filmInit){
+    public Film toFilm(FilmInit filmInit) {
         return Film.builder()
                 .name(filmInit.getTitle())
                 .characters(null)

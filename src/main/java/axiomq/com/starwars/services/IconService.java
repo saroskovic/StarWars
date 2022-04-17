@@ -15,5 +15,4 @@ public interface IconService {
     Icon updateIcon(Long iconId, Icon icon);
 
     void deleteIcon(Long iconId);
-
 }
