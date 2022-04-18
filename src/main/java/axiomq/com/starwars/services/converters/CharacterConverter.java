@@ -29,6 +29,4 @@ public class CharacterConverter {
         Long planetId = Long.parseLong(homeworldId);
         return planetService.getById(planetId);
     }
-
-
 }

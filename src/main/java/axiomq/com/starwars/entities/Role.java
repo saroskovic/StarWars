@@ -1,7 +1,6 @@
 package axiomq.com.starwars.entities;
 
-import axiomq.com.starwars.enums.UserType;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import axiomq.com.starwars.util.enums.UserType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,7 +21,7 @@ public class Role {
     @Enumerated(EnumType.STRING)
     private UserType role;
 
-    @OneToMany(mappedBy = "role")
+    @ManyToMany(mappedBy = "roles")
     private static Set<User> users = new HashSet<>();
 
     @Override

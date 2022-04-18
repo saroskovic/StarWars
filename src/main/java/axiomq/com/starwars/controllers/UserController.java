@@ -4,7 +4,6 @@ import axiomq.com.starwars.entities.User;
 import axiomq.com.starwars.services.UserService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,4 +40,16 @@ public class UserController {
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }
+
+    @GetMapping("/foradmin")
+    public String forAdmin(){
+        return "This URL is for admin only";
+    }
+
+    @GetMapping("/foruser")
+    public String forUser(){
+        return "This URL is for user only";
+    }
+
+
 }
