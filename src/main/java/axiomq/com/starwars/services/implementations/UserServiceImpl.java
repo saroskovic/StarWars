@@ -1,7 +1,6 @@
 package axiomq.com.starwars.services.implementations;
 
 import axiomq.com.starwars.entities.User;
-import axiomq.com.starwars.repositories.RoleRepository;
 import axiomq.com.starwars.repositories.UserRepository;
 import axiomq.com.starwars.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -46,6 +45,5 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long userId) {
         User user = getUserById(userId);
         userRepository.delete(user);
-
     }
 }

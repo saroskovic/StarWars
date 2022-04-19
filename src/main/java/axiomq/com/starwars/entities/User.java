@@ -1,7 +1,6 @@
 package axiomq.com.starwars.entities;
 
 import axiomq.com.starwars.enums.UserType;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,13 +18,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
+    @Enumerated(EnumType.STRING)
+    private UserType role;
 
     private String email;
 
-    @JsonIgnore
     private String password;
 
     private String username;
@@ -35,7 +32,7 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id.equals(user.id) && role.equals(user.role) && email.equals(user.email) && username.equals(user.username);
+        return Objects.equals(id, user.id) && role == user.role && Objects.equals(email, user.email) && Objects.equals(username, user.username);
     }
 
     @Override

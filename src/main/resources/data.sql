@@ -1,1 +1,2 @@
-INSERT INTO user (email, password, user_type, username) VALUES ('zoran@mail.com', 'pass123', 'ADMIN' , 'zoran');
+INSERT IGNORE INTO user (id, email, password, username, role) VALUES (1, 'zoran@mail.com', 'pass123', 'zoran', 'ROLE_ADMIN');
+INSERT IGNORE INTO user (id, email, password, username, role) VALUES (2, 'pera@mail.com', 'pass123', 'pera', 'ROLE_USER');
