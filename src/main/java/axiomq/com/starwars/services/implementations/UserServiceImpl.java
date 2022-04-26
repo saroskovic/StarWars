@@ -1,18 +1,20 @@
 package axiomq.com.starwars.services.implementations;
 
 import axiomq.com.starwars.entities.User;
-import axiomq.com.starwars.repositories.RoleRepository;
 import axiomq.com.starwars.repositories.UserRepository;
 import axiomq.com.starwars.services.UserService;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -46,6 +48,10 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long userId) {
         User user = getUserById(userId);
         userRepository.delete(user);
+    }
 
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }

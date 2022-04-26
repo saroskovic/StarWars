@@ -3,6 +3,7 @@ package axiomq.com.starwars.services;
 import axiomq.com.starwars.entities.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
@@ -15,4 +16,6 @@ public interface UserService {
     User updateUser(Long userId, User user);
 
     void deleteUser(Long userId);
+
+    Optional<User> findByEmail(String email);
 }
