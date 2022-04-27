@@ -2,6 +2,7 @@ package axiomq.com.starwars.entities;
 
 import axiomq.com.starwars.enums.UserType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@JsonIgnoreProperties({"handle", "hibernateLazyInitializer"})
 public class Role {
 
     @Id
@@ -22,6 +24,7 @@ public class Role {
     @Enumerated(EnumType.STRING)
     private UserType name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
     private List<User> users = new ArrayList<>();
 

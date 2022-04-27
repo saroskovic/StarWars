@@ -1,23 +1,27 @@
 package axiomq.com.starwars.services.implementations;
 
 import axiomq.com.starwars.entities.User;
+import axiomq.com.starwars.entities.dto.UserDto;
 import axiomq.com.starwars.repositories.UserRepository;
 import axiomq.com.starwars.services.UserService;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import axiomq.com.starwars.util.Encryption;
+import axiomq.com.starwars.util.JWTUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+
+    private final JWTUtil jwtUtil;
 
     @Override
     public User createUser(User user) {
@@ -51,7 +55,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new NoSuchElementException(String.format("Could not find user: {}", email)));
+    }
+
+    @Override
+    public ResponseEntity<?> login(String email, String pwd){
+        User user = findByEmail(email);
+        if(user != null && Encryption.validatePassword(pwd, user.getPassword())){
+            String token = jwtUtil.getJWTToken(user);
+            UserDto userDto = new UserDto();
+            userDto.setUser(email);
+            userDto.setToken(token);
+            return new ResponseEntity<>(userDto, HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Wrong credentials", HttpStatus.UNAUTHORIZED);
     }
 }
