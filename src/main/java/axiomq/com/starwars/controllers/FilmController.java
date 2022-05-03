@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/film")
+@RequestMapping("/api/film")
 public class FilmController {
 
     private FilmService filmService;

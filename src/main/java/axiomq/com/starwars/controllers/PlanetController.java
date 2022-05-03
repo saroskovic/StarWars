@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/planet")
+@RequestMapping("/api/planet")
 public class PlanetController {
 
     private PlanetService planetService;
