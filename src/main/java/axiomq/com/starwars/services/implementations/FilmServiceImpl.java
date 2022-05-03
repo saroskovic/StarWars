@@ -1,5 +1,6 @@
 package axiomq.com.starwars.services.implementations;
 
+import axiomq.com.starwars.entities.Character;
 import axiomq.com.starwars.entities.Film;
 import axiomq.com.starwars.entities.dto.FilmExt;
 import axiomq.com.starwars.entities.dto.FilmInit;
@@ -66,5 +67,11 @@ public class FilmServiceImpl implements FilmService {
             filmRepository.saveAll(filmsDb);
             url = response.getNext();
         }
+    }
+
+    @Override
+    public Set<Character> charactersInFilm(Long filmId) {
+        Film film = getById(filmId);
+        return film.getCharacters();
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/populatedb")
+@RequestMapping("/admin/populatedb")
 public class DatabaseController {
 
     private PlanetService planetService;
@@ -21,10 +21,10 @@ public class DatabaseController {
 
     @GetMapping
     public void populate() {
-        planetService.populateDatabase();
-        filmService.populateDatabase();
-        characterService.populateDatabase();
 
+        filmService.populateDatabase();
+        planetService.populateDatabase();
+        characterService.populateDatabase();
     }
 
 }

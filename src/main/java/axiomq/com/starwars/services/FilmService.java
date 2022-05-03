@@ -1,8 +1,10 @@
 package axiomq.com.starwars.services;
 
+import axiomq.com.starwars.entities.Character;
 import axiomq.com.starwars.entities.Film;
 
 import java.util.List;
+import java.util.Set;
 
 public interface FilmService {
 
@@ -17,4 +19,6 @@ public interface FilmService {
     void deleteFilm(Long id);
 
     void populateDatabase();
+
+    Set<Character> charactersInFilm(Long filmId);
 }

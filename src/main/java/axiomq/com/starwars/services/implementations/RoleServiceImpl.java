@@ -34,7 +34,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role updateRole(Long roleId, Role newRole) {
         Role role = getRoleById(roleId);
-        role.setRole(newRole.getRole());
+        role.setName(newRole.getName());
         return roleRepository.save(role);
     }
 

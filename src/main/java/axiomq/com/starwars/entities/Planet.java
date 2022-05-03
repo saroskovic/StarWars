@@ -1,8 +1,10 @@
 package axiomq.com.starwars.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -19,6 +21,7 @@ public class Planet {
 
     private String name;
 
-    @OneToMany
-    private Set<Character> characters;
+    @JsonIgnore
+    @OneToMany(mappedBy = "planet", fetch = FetchType.EAGER)
+    private Set<Character> characters = new HashSet<>();
 }

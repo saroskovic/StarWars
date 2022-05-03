@@ -1,5 +1,6 @@
 package axiomq.com.starwars.services.implementations;
 
+import axiomq.com.starwars.entities.Character;
 import axiomq.com.starwars.entities.Planet;
 import axiomq.com.starwars.entities.dto.PlanetExt;
 import axiomq.com.starwars.entities.dto.PlanetInit;
@@ -67,5 +68,11 @@ public class PlanetServiceImpl implements PlanetService {
             planetRepository.saveAll(planetsDb);
             url = response.getNext();
         }
+    }
+
+    @Override
+    public Set<Character> allCharactersOnPlanet(Long planetId){
+        Planet planet = getById(planetId);
+        return planet.getCharacters();
     }
 }
