@@ -36,6 +36,9 @@ public class Character {
 
     private Integer votersCount;
 
+    @OneToMany(mappedBy = "character", orphanRemoval = true, fetch = FetchType.LAZY)
+    private Set<Vote> votes;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

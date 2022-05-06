@@ -1,10 +1,14 @@
 package axiomq.com.starwars.services.implementations;
 
+import axiomq.com.starwars.entities.Character;
 import axiomq.com.starwars.entities.Vote;
 import axiomq.com.starwars.repositories.VoteRepository;
+import axiomq.com.starwars.services.CharacterService;
+import axiomq.com.starwars.services.UserService;
 import axiomq.com.starwars.services.VoteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -14,9 +18,14 @@ import java.util.NoSuchElementException;
 public class VoteServiceImpl implements VoteService {
 
     private final VoteRepository voteRepository;
+    private final CharacterService characterService;
+    private final UserService userService;
 
     @Override
-    public Vote doVote(Vote vote) {
+    public Vote doVote(Vote vote, MultipartFile file, Long characterId) {
+        Character character = characterService.getCharacterById(characterId);
+        vote.setCharacter(character);
+
         return voteRepository.save(vote);
     }
 

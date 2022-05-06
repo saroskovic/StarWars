@@ -31,6 +31,9 @@ public class User {
 
     private String username;
 
+    @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY)
+    private Set<Vote> votes;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
