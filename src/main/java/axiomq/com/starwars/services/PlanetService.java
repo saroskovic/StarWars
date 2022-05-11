@@ -1,8 +1,10 @@
 package axiomq.com.starwars.services;
 
+import axiomq.com.starwars.entities.Character;
 import axiomq.com.starwars.entities.Planet;
 
 import java.util.List;
+import java.util.Set;
 
 public interface PlanetService {
 
@@ -17,4 +19,6 @@ public interface PlanetService {
     void deletePlanet(Long id);
 
     void populateDatabase();
+
+    Set<Character> allCharactersOnPlanet(Long planetId);
 }

@@ -26,13 +26,14 @@ public class Character {
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinTable(name = "characters_in_films", joinColumns =
-            {@JoinColumn(name = "film_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "character_id")})
+            {@JoinColumn(name = "character_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "film_id")})
     private Set<Film> films = new HashSet<>();
 
-    @ManyToOne
-    @JoinColumn(name = "planet_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "planet")
     private Planet planet;
+
     private Integer votersCount;
 
     @Override

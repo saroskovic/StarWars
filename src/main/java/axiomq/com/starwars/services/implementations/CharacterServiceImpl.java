@@ -23,6 +23,8 @@ public class CharacterServiceImpl implements CharacterService {
 
     private final CharacterRepository characterRepository;
 
+    private final FilmRepository filmRepository;
+
     String url = "https://swapi.dev/api/people";
 
     @Override
@@ -51,7 +53,7 @@ public class CharacterServiceImpl implements CharacterService {
     @Override
     public Character getCharacterById(Long characterId) {
         return characterRepository.findById(characterId)
-                .orElseThrow(() -> new NoSuchElementException(String.format("Film: %d not found", characterId)));
+                .orElseThrow(() -> new NoSuchElementException(String.format("Character: %d not found", characterId)));
     }
 
     @Override
