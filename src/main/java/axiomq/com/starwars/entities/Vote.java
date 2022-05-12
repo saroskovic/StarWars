@@ -15,12 +15,23 @@ public class Vote {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Integer numericalValue;
     private String comment;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "icon")
     private Icon icon;
+
+    private String url;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "character_id", referencedColumnName = "id")
+    private Character character;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
     @Override
     public boolean equals(Object o) {
